@@ -49,11 +49,14 @@ const createSliderDescriptions = (arr) => {
 };
 
 const createSliderControls = (arr) => {
-  arr.forEach((item) => {
+  arr.forEach((item, index) => {
     let controlOuter = document.createElement('button');
     controlOuter.classList.add('slider__control-outer');
     let controlInner = document.createElement('div');
     controlInner.classList.add('slider__control-inner');
+    if (index === 0) {
+      controlInner.classList.add('slider__control-active');
+    }
     controlOuter.append(controlInner);
     sliderControlsArea.append(controlOuter);
   });
@@ -63,15 +66,22 @@ createSliderImages(memesData);
 createSliderDescriptions(memesData);
 createSliderControls(memesData);
 
-const sliderControls = document.querySelectorAll('.slider__control-outer');
+const sliderControlsOuter = document.querySelectorAll('.slider__control-outer');
 
-let count = 0;
-
-sliderControls.forEach((item, index) => {
+sliderControlsOuter.forEach((item, index) => {
+  let count = 0;
+  let innerControls = document.querySelectorAll('.slider__control-inner');
   item.addEventListener('click', function () {
     let imgWidth = sliderImgArea.offsetWidth;
     let descrWidth = sliderTextArea.offsetWidth;
     count = index + 1;
+
+    innerControls.forEach((item, index) => {
+      if (item.classList.contains('slider__control-active')) {
+        item.classList.remove('slider__control-active');
+      }
+    });
+    innerControls[index].classList.add('slider__control-active');
 
     if (count === 1) {
       sliderImgArea.style.transform = 'translate(0px)';
@@ -79,6 +89,17 @@ sliderControls.forEach((item, index) => {
     } else {
       sliderImgArea.style.transform = 'translate(-' + index * imgWidth + 'px)';
       sliderTextArea.style.transform = 'translate(-' + index * descrWidth + 'px)';
+    }
+  });
+
+  item.addEventListener('mouseover', function () {
+    if (!item.classList.contains('slider__control-active')) {
+      innerControls[index].style.backgroundColor = '#ffffff';
+    }
+  });
+  item.addEventListener('mouseout', function () {
+    if (!item.classList.contains('slider__control-active')) {
+      innerControls[index].style.backgroundColor = 'blue';
     }
   });
 });

@@ -98,3 +98,8 @@ button {
   border-radius: 50%;
   background-color: blue;
 }
+
+.slider__control-active {
+  background-color: transparent !important;
+  border: 2px solid #ffffff;
+}
