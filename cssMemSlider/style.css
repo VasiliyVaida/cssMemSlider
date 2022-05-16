@@ -42,13 +42,15 @@ button {
 
 .slider__wrapper {
   width: 100%;
+  overflow: hidden;
 }
 
 .slider__img-wrapper {
   display: flex;
-  overflow: hidden;
   width: 100%;
   height: 500px;
+  margin-bottom: 40px;
+  transition: 1s;
 }
 
 .slider__manage {
@@ -59,8 +61,13 @@ button {
 
 .slider__manage-text {
   width: 30%;
-  display: flex;
   overflow: hidden;
+}
+
+.slider__manage-text-inner {
+  width: 100%;
+  display: flex;
+  transition: 1s;
 }
 
 .slider__manage-descr {

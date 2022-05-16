@@ -22,7 +22,7 @@ const memesData = [
 ];
 
 const sliderImgArea = document.querySelector('.slider__img-wrapper');
-const sliderTextArea = document.querySelector('.slider__manage-text');
+const sliderTextArea = document.querySelector('.slider__manage-text-inner');
 const sliderControlsArea = document.querySelector('.slider__manage-controls');
 
 const createSliderImages = (arr) => {
@@ -62,3 +62,23 @@ const createSliderControls = (arr) => {
 createSliderImages(memesData);
 createSliderDescriptions(memesData);
 createSliderControls(memesData);
+
+const sliderControls = document.querySelectorAll('.slider__control-outer');
+
+let count = 0;
+
+sliderControls.forEach((item, index) => {
+  item.addEventListener('click', function () {
+    let imgWidth = sliderImgArea.offsetWidth;
+    let descrWidth = sliderTextArea.offsetWidth;
+    count = index + 1;
+
+    if (count === 1) {
+      sliderImgArea.style.transform = 'translate(0px)';
+      sliderTextArea.style.transform = 'translate(0px)';
+    } else {
+      sliderImgArea.style.transform = 'translate(-' + index * imgWidth + 'px)';
+      sliderTextArea.style.transform = 'translate(-' + index * descrWidth + 'px)';
+    }
+  });
+});
