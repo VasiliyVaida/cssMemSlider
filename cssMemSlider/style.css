@@ -134,3 +134,28 @@ button {
   font-family: 'Roboto', sans-serif;
   color: #ffffff;
 }
+
+@media (max-width: 767.5px) {
+  .slider__img-wrapper {
+    height: 300px;
+  }
+  .slider__manage {
+    flex-direction: column-reverse;
+  }
+
+  .slider__manage-text {
+    margin-top: 20px;
+    width: 100%;
+    align-self: start;
+  }
+
+  .slider__manage-controls {
+    align-self: center;
+  }
+}
+
+@media (max-width: 519.5px) {
+  .slider__img-wrapper {
+    height: 200px;
+  }
+}
